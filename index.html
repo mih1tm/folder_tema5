@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label style="font-size: 30px;">Numar configuratii: </label>
+    <input placeholder="Introdu numarul de configuratii..." style="font-size: 30px;" id="array_length_input" type="number">
+    <br><br>
+    <button id="continue_button" name="continue_button" onclick="create_array()" style="font-size: 40px;">Continue</button>
+    <br><br><br>
+    <div id="config_list" hidden>
+        <label for="input_id" id="label_id" name="label_id">ID: </label>
+        <input type="number" id="input_id" name="input_id">
+        <br><br>
+        <label for="input_model" id="label_model" name="label_model">Model: </label>
+        <input type="number" id="input_model" name="input_model">
+        <br><br>
+        <label for="input_pret" id="label_pret" name="label_pret">Pret: </label>
+        <input type="number" id="input_pret" name="input_pret">
+        <br><br>
+        <label for="input_producator" id="label_producator" name="label_producator">Producator: </label>
+        <input type="number" id="input_producator" name="input_producator">
+        <br><br>
+        <label for="input_memorie" id="label_memorie" name="label_memorie">Memorie: </label>
+        <input type="number" id="input_memorie" name="input_memorie">
+        <br><br>
+        <button id="add_config_to_array" name="add_config_to_array" onclick="add_to_array()">Add</button>
+    </div>
+    <br><br><br>
+    <div id="show" hidden>
+        <button id="show_cheap" name="show_cheap" onclick="show_cheapest()">Show the cheapest</button>
+        <button id="show_expensive" name="show_expensive" onclick="show_expensive()">show the most expensive</button>
+    </div>
+
+</body>
+
+
+<script>
+    
+    let config_array = []
+    let array_counter = 0
+
+    function create_array(){
+        let array_length =Number(document.getElementById("array_length_input").value)
+        if(array_length >= 5){
+            //config_array = [array_length]
+            config_array.length = array_length
+            document.getElementById("config_list").toggleAttribute("hidden");
+            console.log(config_array)
+            document.getElementById("continue_button").disabled = true;
+        }
+        else{
+            alert('array must be higher')
+            document.getElementById("array_length_input").value = ""
+        }
+        
+        
+    }
+    
+    
+    function config(id, model, pret, producator, memory){
+        this.id = id;
+        this.model = model;
+        this.pret = pret;
+        this.producator = producator;
+        this.memory = memory;
+    }
+
+    function add_to_array(){
+
+        let id = document.getElementById("input_id").value
+        let model = document.getElementById("input_model").value
+        let pret = document.getElementById("input_pret").value
+        let producator = document.getElementById("input_producator").value
+        let memory = document.getElementById("input_memorie").value
+
+        config_array[array_counter] = new config(id, model, pret, producator, memory)
+
+        document.getElementById("input_id").value = ""
+        document.getElementById("input_model").value = ""
+        document.getElementById("input_pret").value = ""
+        document.getElementById("input_producator").value = ""
+        document.getElementById("input_memorie").value = ""
+        console.log(config_array)
+        array_counter++
+        if(array_counter == config_array.length){
+            document.getElementById("config_list").toggleAttribute("hidden")
+            document.getElementById("show").toggleAttribute("hidden")
+        }
+    }
+
+    function show_cheapest(){
+        let min = config_array[0]
+        for( let i = 1; i < config_array.length; i++){
+            if(Number(config_array[i].pret) < Number(min.pret)){
+                min = config_array[i]
+            }
+        }
+        alert('Cea mai ieftina configuratie are id-ul: ' + min.id)
+        console.log('id: ' + min.id)
+        console.log('pret' + min.pret)
+    }
+
+    function show_expensive(){
+        let max = config_array[0]
+        for( let i = 1; i < config_array.length; i++){
+            if(Number(config_array[i].pret) > Number(max.pret)){
+                max = config_array[i]
+            }
+        }
+        alert('Cea mai ieftina configuratie are id-ul: ' + max.id)
+        console.log(max.id)
+    }
+
+   
+</script>
+</html>

@@ -1,0 +1,29 @@
+Creați un proiect nou în Visual Studio / WebStorm cu numele : Tema5
+
+Pagina principală ( index.html )  contine un element de input “ Număr configurații” 
+in care utilizatorul poate introduce un numar > 5 si un buton cu numele 
+‘Continue' care se activează doar când utilizatorul a introdus un număr 
+care respecta condiția.
+
+Daca utilizatorul introduce un număr care nu respecta conditia, 
+se afiseaza un mesaj de eroare si se reia procesul.
+
+Numarul reprezinta lungimea unui tablou in care se vor salva  configuratii 
+de telefoane mobile.
+
+Fiecare configuratie are urmatoarele proprietati : 
+-id,
+-model, 
+-pret, 
+-producător, 
+-memory
+
+Când utilizatorul face click pe butonul 'Continue' se va afisa un formular 
+in care utilizatorul poate introduce cate o configuratie si un buton de 
+'Add ‘.După click pe butonul ‘Continue’ acesta se va dezactiva.
+
+Click pe butonul de ‘Add’ va salva configurația din formular in tablou.
+
+Cand tabloul de configuratii a fost completat cu numărul de configurații 
+stabilit anterior butonul Add dispare si este inlocuit cu 
+următoarele butoane :  ‘Show the cheapest’, ‘Show the most expensive’
